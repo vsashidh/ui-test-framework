@@ -2,12 +2,25 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
-	<artifactId>ui-tests</artifactId>
+	<artifactId>fmi-ui-tests</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+
+	<properties>
+		<java.version>1.7</java.version>
+		<maven.compiler.version>3.5.1</maven.compiler.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cucumber.options>--plugin pretty html:target/cucumber --tags @wip</cucumber.options>
+		<spring.version>4.1.6.RELEASE</spring.version>
+		<spring.data.version>1.8.0.RELEASE</spring.data.version>
+	</properties>
+
 	<modules>
 		<module>medical-reporting-ui-tests</module>
+		<module>example-ui-test</module>
+		<module>ui-tests-base</module>
 	</modules>
+
 	<dependencyManagement>
 		<dependencies>
 
@@ -45,14 +58,91 @@
 				<groupId>info.cukes</groupId>
 				<artifactId>cucumber-java</artifactId>
 				<version>1.2.3</version>
-				<scope>test</scope>
 			</dependency>
 
 			<!-- spring dependency -->
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring.data.version}</version>
+				<exclusions>
+					<!-- Exclude the dependency on junit, which is older and clashes with 
+						our 4.11 junit dep -->
+					<exclusion>
+						<groupId>junit</groupId>
+						<artifactId>junit-dep</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>info.cukes</groupId>
 				<artifactId>cucumber-spring</artifactId>
 				<version>1.2.3</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- cucumber reports -->
+			<!-- https://github.com/damianszczepanik/cucumber-reporting -->
+			<dependency>
+				<groupId>net.masterthought</groupId>
+				<artifactId>cucumber-reporting</artifactId>
+				<version>2.1.0</version>
 				<scope>test</scope>
 			</dependency>
 
@@ -61,11 +151,78 @@
 
 	<!-- Build Settings -->
 	<build>
-		...
+		<plugins>
+			<!-- Following compiler plugin was added to support annotation processing -->
+			<plugin>
+				<artifactId>
+                    maven-compiler-plugin
+                </artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>UTF-8</encoding>
+					<compilerArgument>-Werror</compilerArgument>
+				</configuration>
+			</plugin>
+			<!-- acceptance/ui testing plugin -->
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.19.1</version>
+				<executions>
+					<execution>
+
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<!-- <systemPropertyVariables> <cucumber.options>${cucumber.options}</cucumber.options> 
+								</systemPropertyVariables> -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- blocking the test phase due to no presence of unit tests -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>2.0.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>cucumber-jvm-example</projectName>
+							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+							<parallelTesting>false</parallelTesting>
+							<buildNumber>1</buildNumber> <!-- TODO: need to determine the purpose of this value -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
-	<reporting>
-		...
-	</reporting>
+	<!-- <reporting> ... </reporting> -->
+
 	<organization>
 		<name>Foundation Medicine</name>
 	</organization>

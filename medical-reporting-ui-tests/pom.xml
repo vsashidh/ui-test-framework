@@ -2,8 +2,53 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.foundationmedicine</groupId>
-    <artifactId>ui-tests</artifactId>
+    <artifactId>fmi-ui-tests</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>medical-reporting-ui-tests</artifactId>
+  <dependencies>
+
+			<!-- selenium-server artifact has transitive dependency to all the other 
+				selenium artifacts -->
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-server</artifactId>
+			</dependency>
+
+			<!-- junit dependencies -->
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-junit</artifactId>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- cucumber-jvm dependency -->
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-java</artifactId>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- spring dependency -->
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-spring</artifactId>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- cucumber reports -->
+			<!-- https://github.com/damianszczepanik/cucumber-reporting -->
+			<dependency>
+				<groupId>net.masterthought</groupId>
+				<artifactId>cucumber-reporting</artifactId>
+				<scope>test</scope>
+			</dependency>
+			
+		</dependencies>
 </project>
