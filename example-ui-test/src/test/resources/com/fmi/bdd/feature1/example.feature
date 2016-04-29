@@ -16,11 +16,11 @@
 ## (Comments)
 
 #Sample Feature Definition Template
-@tag
+@feature1
 Feature: Example feature
 	I want to use this example to show how behavior-driven development tests work.
 
-@tag1
+@smoke
 Scenario: Clicking the first element in the list
 Given the page has a link with text 'A/B Testing'
 When I click on the link with text 'A/B Testing'
