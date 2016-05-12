@@ -13,6 +13,7 @@
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<spring.data.version>1.8.0.RELEASE</spring.data.version>
 		<skipITs>false</skipITs>
+		<skipUTs>true</skipUTs>
 	</properties>
 
 	<modules>
@@ -199,7 +200,7 @@
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<skip>true</skip>
+							<skip>${skipUTs}</skip>
 						</configuration>
 					</execution>
 				</executions>
