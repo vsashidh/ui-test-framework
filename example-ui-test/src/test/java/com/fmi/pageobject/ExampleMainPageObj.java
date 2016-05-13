@@ -27,11 +27,6 @@ public class ExampleMainPageObj {
 		PageFactory.initElements(driver, this);
 	}
 
-	public String getHeader() {
-		WebElement elem = driver.findElement(By.className(contentIdentifier));
-		return elem.getText();
-	}
-
 	public boolean findElementInList(String text) {
 		WebElement elem = findElementInList(linksContainer, text, -1);
 		return (elem != null);
