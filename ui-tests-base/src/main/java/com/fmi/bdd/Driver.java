@@ -5,4 +5,5 @@ public interface Driver{
 		WEBDRIVER
 	}
 	public DriverType getDriverType();
+	public <T> T getDriver();
 }

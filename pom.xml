@@ -130,6 +130,11 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>info.cukes</groupId>
 				<artifactId>cucumber-spring</artifactId>
 				<version>1.2.3</version>
@@ -146,12 +151,8 @@
 			</dependency>
 
 			<!-- logging dependency -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>1.7.21</version>
-			</dependency>
-			
+
+
 		</dependencies>
 	</dependencyManagement>
 

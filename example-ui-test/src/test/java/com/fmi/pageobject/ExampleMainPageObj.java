@@ -7,24 +7,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
+
+import com.fmi.bdd.Driver;
+import com.fmi.bdd.DriverManager;
 
 public class ExampleMainPageObj {
 	
 	@FindBy(css = "div#content")
 	private WebElement linksContainer;
 	
-	private WebDriver driver;
+/*	@Autowired
+	private DriverManager drvMgr;
+	
+	@Autowired
+	private Driver driver;*/
 
 	private List<WebElement> links; // list of links lazily loaded
 	
-	public ExampleMainPageObj(){
-		driver = new ChromeDriver();
-		driver.get("http://the-internet.herokuapp.com/");
-		PageFactory.initElements(driver, this);
+	public ExampleMainPageObj(Driver drv){
+		((WebDriver) drv.getDriver()).get("http://the-internet.herokuapp.com/");
+		PageFactory.initElements((WebDriver)drv.getDriver(), this);
 	}
 
 	public boolean findElementInList(String text) {

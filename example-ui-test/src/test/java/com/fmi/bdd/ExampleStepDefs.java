@@ -1,6 +1,7 @@
 package com.fmi.bdd;
 
 import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fmi.pageobject.ExampleChildPageObj;
 import com.fmi.pageobject.ExampleMainPageObj;
@@ -11,8 +12,11 @@ import cucumber.api.java.en.When;
 
 public class ExampleStepDefs {
 	
-	private ExampleMainPageObj mainPg = new ExampleMainPageObj(); //the main page
-	private ExampleChildPageObj childPg = new ExampleChildPageObj();
+	@Autowired
+	private ExampleMainPageObj mainPg; //the main page
+	
+	@Autowired
+	private ExampleChildPageObj childPg; //the child page
 	
 	@Given("^the page has a link with text 'A/B Testing'$")
 	public void the_page_has_a_link_with_text_A_B_Testing() throws Throwable {
