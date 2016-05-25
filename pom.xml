@@ -178,15 +178,26 @@
 				<version>2.19.1</version>
 				<executions>
 					<execution>
+						<id>functional-tests</id>
+						<phase>test</phase>
 						<goals>
 							<goal>integration-test</goal>
-							<goal>verify</goal>
 						</goals>
 						<configuration>
 							<skipITs>${skipITs}</skipITs>
 							<dependenciesToScan>
 								<dependency>com.foundationmedicine:ui-tests-base</dependency>
 							</dependenciesToScan>
+						</configuration>
+					</execution>
+					<execution>
+						<id>functional-tests-verification</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<testFailureIgnore>true</testFailureIgnore>
 						</configuration>
 					</execution>
 				</executions>
@@ -218,7 +229,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>cucumber-jvm-example</projectName>
+							<projectName>${project.name}</projectName>
 							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
 							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
 							<parallelTesting>false</parallelTesting>
