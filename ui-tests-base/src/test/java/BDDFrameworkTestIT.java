@@ -7,7 +7,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import com.fmi.bdd.Driver;
 import com.fmi.bdd.DriverManager;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,13 +15,18 @@ public class BDDFrameworkTestIT {
 	
 	@Autowired
 	public DriverManager myDriverMgr;
-	
+
+	@Autowired
+	public DriverManager myDriver;
+
 	@Test
 	public void testDriverManger(){
 		Assert.notNull(myDriverMgr);
-		Assert.notNull(myDriverMgr.getProvider());
-		Assert.isTrue(myDriverMgr.getProvider().getDriverType() == Driver.DriverType.WEBDRIVER);
 	}
 	
+	@Test
+	public void testDriver(){
+		Assert.notNull(myDriver);
+	}
 	
 }

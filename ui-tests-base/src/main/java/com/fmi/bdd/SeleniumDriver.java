@@ -15,6 +15,8 @@ public class SeleniumDriver<T extends RemoteWebDriver> implements Driver {
 		return DriverType.WEBDRIVER;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
 	public T getDriver() {
 		return ActualWebDriver;
 	}

@@ -5,28 +5,24 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import com.fmi.bdd.Driver.DriverType;
 
-//@Component
-//@Scope("cucumber-glue")
 public class DriverManager {
-	// making the class a singleton
-	// @Value("browser")
+
 	public enum BrowserType {
 		CHROME, SAFARI, IE, EDGE
 	};
 
-	private BrowserType brType = BrowserType.CHROME;
-	private DriverType drType = DriverType.WEBDRIVER;
 	private Driver driver;
 
 	private DriverManager() {
 		System.out.println("DriverManager has been instantiated");
 	}
 
-	public Driver getProvider() {
+	public Driver getProvider(DriverProperties prp) {
 		if (driver == null) {
-			if (drType == DriverType.WEBDRIVER) {
-				switch (brType) {
+			if (prp.getDriverType() == DriverType.WEBDRIVER) {
+				switch (prp.getBrowserType()) {
 				case CHROME:
+					System.getProperties().setProperty("webdriver.chrome.driver", prp.getChromeDriverPath());
 					driver = new SeleniumDriver<ChromeDriver>(new ChromeDriver());
 					break;
 				case SAFARI:
@@ -41,12 +37,12 @@ public class DriverManager {
 		return driver;
 	}
 
-	public void setBrType(BrowserType brType) {
+/*	public void setBrType(BrowserType brType) {
 		this.brType = brType;
 	}
 
 	public void setDrType(DriverType drType) {
 		this.drType = drType;
-	};
+	};*/
 
 }
