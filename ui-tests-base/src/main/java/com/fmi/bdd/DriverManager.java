@@ -1,5 +1,6 @@
 package com.fmi.bdd;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -32,17 +33,12 @@ public class DriverManager {
 					driver = null;
 					break;
 				}
+				
+				if (driver != null)
+					((WebDriver) driver.getDriver()).get(prp.getURL());
 			}
 		}
 		return driver;
 	}
-
-/*	public void setBrType(BrowserType brType) {
-		this.brType = brType;
-	}
-
-	public void setDrType(DriverType drType) {
-		this.drType = drType;
-	};*/
 
 }

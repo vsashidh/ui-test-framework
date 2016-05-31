@@ -21,6 +21,10 @@ public final class DriverProperties {
 	private String chromeDriverPath;
 	@Value("${webdriver.ie.driver}")
 	private String ieDriverPath;
+	
+	//url
+	@Value("${test.url}")
+	private String testUrl;
 
 	public void setBrowserType(BrowserType brType) {
 		this.brType = brType;
@@ -45,5 +49,9 @@ public final class DriverProperties {
 
 	public String getIeDriverPath() {
 		return ieDriverPath;
+	}
+
+	public String getURL() {
+		return testUrl;
 	};
 }

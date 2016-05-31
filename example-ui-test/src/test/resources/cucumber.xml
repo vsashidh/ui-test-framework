@@ -14,11 +14,11 @@
 	<import resource="bdd_config.xml" />
 
 	<!-- Beans for Page Objects -->
-	<bean id="mainPg" class="com.fmi.pageobject.ExampleMainPageObj">
+	<bean id="mainPg" class="com.fmi.pageobject.ExampleMainPageObj" scope="cucumber-glue">
 		<constructor-arg type="com.fmi.bdd.Driver" ref="driverService" />
 	</bean>
 
-	<bean id="childPg" class="com.fmi.pageobject.ExampleChildPageObj">
+	<bean id="childPg" class="com.fmi.pageobject.ExampleChildPageObj" scope="cucumber-glue">
 		<constructor-arg type="com.fmi.bdd.Driver" ref="driverService" />
 	</bean>
 
