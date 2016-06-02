@@ -17,3 +17,18 @@
 
 #Sample Feature Definition Template
 @example
+
+Feature: Example feature
+	I want to use this example to show how behavior-driven development tests work.
+
+@smoke
+Scenario: Clicking the first element in the list
+Given the page has a link with text 'A/B Testing'
+When I click on the link with text 'A/B Testing'
+Then I should see a header with 'A/B Test Variation 1'
+
+@smoke
+Scenario: Returning to the main page
+Given the page with a header 'A/B Test Variation 1'
+When I click the browser back button
+Then I should see a header with 'Welcome to the Internet'

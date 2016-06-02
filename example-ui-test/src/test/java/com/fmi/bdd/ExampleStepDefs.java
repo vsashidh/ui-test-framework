@@ -3,7 +3,6 @@ package com.fmi.bdd;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fmi.pageobject.BasePageObj;
 import com.fmi.pageobject.ExampleChildPageObj;
 import com.fmi.pageobject.ExampleMainPageObj;
 
@@ -18,7 +17,7 @@ public class ExampleStepDefs {
 
 	@Autowired
 	private ExampleChildPageObj childPg; // the child page
-	
+
 	@Given("^the page has a link with text '(.*)'$")
 	public void the_page_has_a_link_with_text(String text) throws Throwable {
 		Assert.assertTrue(mainPg.findElementInList(text));
@@ -32,10 +31,11 @@ public class ExampleStepDefs {
 	@Then("^I should see a header with '(.*)'$")
 	public void i_should_see_a_header_with(String text) throws Throwable {
 		String hdrText = null;
-		if(childPg != null)
+		//check if the page is in view since we are sharing this step between two page objects.
+		if (childPg.isInView())
 			hdrText = childPg.getHeader();
-		else if(mainPg != null)
-			hdrText= mainPg.getHeader();
+		else if (mainPg.isInView())
+			hdrText = mainPg.getHeader();
 		Assert.assertEquals(text, hdrText);
 	}
 

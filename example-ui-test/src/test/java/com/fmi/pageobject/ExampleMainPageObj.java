@@ -70,4 +70,14 @@ public class ExampleMainPageObj extends BasePageObj {
 		throw new NoSuchElementException("Unable to find the requested element in the list");
 	}
 
+	@Override
+	public void setInView() {
+		try{
+			inView = (pageHeader.isDisplayed());
+		}
+		catch(NoSuchElementException nse){
+			inView = false;
+		}
+	}
+
 }

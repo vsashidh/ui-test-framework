@@ -1,5 +1,6 @@
 package com.fmi.pageobject;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,6 +17,15 @@ public class ExampleChildPageObj extends BasePageObj {
 
 	public String getHeader() {
 		return pageHeader.getText();
+	}
+
+	@Override
+	public void setInView() {
+		try {
+			inView = (pageHeader.isDisplayed());
+		} catch (NoSuchElementException nse) {
+			inView = false;
+		}
 	}
 
 }
