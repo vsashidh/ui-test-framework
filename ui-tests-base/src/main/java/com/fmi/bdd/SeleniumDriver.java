@@ -21,4 +21,10 @@ public class SeleniumDriver<T extends RemoteWebDriver> implements Driver {
 		return ActualWebDriver;
 	}
 
+	@Override
+	public void addEventListener(DriverEventListener driverActionListener) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

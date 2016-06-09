@@ -21,18 +21,25 @@
 		</property>
 	</bean>
 
-	<!-- a DriverProperties bean which will contain values from application.properties file -->
+	<!-- a DriverProperties bean which will contain values from application.properties
+		file -->
 	<bean id="dproperties" class="com.fmi.bdd.DriverProperties">
 		<property name="BrowserType" value="${test.browser}" />
 		<property name="DriverType" value="${test.driver}" />
 	</bean>
 
 	<!-- A constructor bean for the driver manager, to be @Autowired -->
-	<bean id="dmanager" class="com.fmi.bdd.DriverManager" />
+	<bean id="dmanager" class="com.fmi.bdd.DriverManager"
+		destroy-method="destroyDriver" />
 
-	<!-- An instance factory method to produce the appropriate driver for dependency injection -->
+	<!-- An instance factory method to produce the appropriate driver for dependency
+		injection -->
 	<bean id="driverService" factory-bean="dmanager" factory-method="getProvider">
 		<constructor-arg ref="dproperties" />
 	</bean>
+
+	<!-- An instance of the driver notifier to consume events raised by the
+		test projects -->
+	<bean id="driverNotifier" class="com.fmi.bdd.DriverNotifier" />
 
 </beans>

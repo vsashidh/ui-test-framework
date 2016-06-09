@@ -33,12 +33,18 @@ public class DriverManager {
 					driver = null;
 					break;
 				}
-				
-				if (driver != null)
+
+				if (driver != null) {
 					((WebDriver) driver.getDriver()).get(prp.getURL());
+				}
+
 			}
 		}
 		return driver;
+	}
+
+	public void destroyDriver() {
+		System.out.println("<<<<< DESTROYING DRIVERMANAGER >>>>>>");
 	}
 
 }

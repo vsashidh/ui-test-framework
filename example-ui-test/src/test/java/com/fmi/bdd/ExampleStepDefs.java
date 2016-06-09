@@ -41,7 +41,12 @@ public class ExampleStepDefs {
 
 	@Given("^the page with a header '(.*)'$")
 	public void the_page_with_a_header(String text) throws Throwable {
-		String hdrText = childPg.getHeader();
+		String hdrText = null;
+		//check if the page is in view since we are sharing this step between two page objects.
+		if (childPg.isInView())
+			hdrText = childPg.getHeader();
+		else if (mainPg.isInView())
+			hdrText = mainPg.getHeader();
 		Assert.assertEquals(text, hdrText);
 	}
 
