@@ -1,5 +1,7 @@
 package com.fmi.bdd;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -35,6 +37,7 @@ public class DriverManager {
 				}
 
 				if (driver != null) {
+					((WebDriver) driver.getDriver()).manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 					((WebDriver) driver.getDriver()).get(prp.getURL());
 				}
 
