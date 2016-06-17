@@ -1,8 +1,7 @@
 package com.fmi.bdd;
 
-import org.openqa.selenium.WebDriver;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 @SuppressWarnings("serial")
 public class CloseBrowserEvent extends DriverEvent {
@@ -13,10 +12,9 @@ public class CloseBrowserEvent extends DriverEvent {
 
 	@Override
 	public void perform(ApplicationContext appContext, Driver driver) {
-		System.out.println("<<<<<CLOSING BROWSER>>>>>>>");
-		((WebDriver) driver.getDriver()).quit();
-		((ClassPathXmlApplicationContext)appContext).close();
-
+		System.out.println("<<<<<CLOSING DRIVER>>>>>>>");
+		driver.close();
+		((AbstractApplicationContext)appContext).close();
 	}
 
 }

@@ -9,5 +9,5 @@ public interface Driver {
 
 	public <T> T getDriver();
 
-	public void addEventListener(DriverEventListener driverActionListener);
+	public void close();
 }

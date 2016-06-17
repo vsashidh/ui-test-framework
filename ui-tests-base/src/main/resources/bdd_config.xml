@@ -30,16 +30,19 @@
 
 	<!-- A constructor bean for the driver manager, to be @Autowired -->
 	<bean id="dmanager" class="com.fmi.bdd.DriverManager"
-		destroy-method="destroyDriver" />
+		destroy-method="destroyDriver">
+	</bean>
 
 	<!-- An instance factory method to produce the appropriate driver for dependency
 		injection -->
 	<bean id="driverService" factory-bean="dmanager" factory-method="getProvider">
 		<constructor-arg ref="dproperties" />
+		<property name="DriverNotifier" ref="driverNotifier" />
 	</bean>
 
 	<!-- An instance of the driver notifier to consume events raised by the
 		test projects -->
-	<bean id="driverNotifier" class="com.fmi.bdd.DriverNotifier" />
+	<bean id="driverNotifier" class="com.fmi.bdd.DriverNotifier"
+		destroy-method="destroyDriverNotifier" />
 
 </beans>

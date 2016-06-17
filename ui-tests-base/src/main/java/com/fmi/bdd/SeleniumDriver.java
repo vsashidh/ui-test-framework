@@ -1,8 +1,9 @@
 package com.fmi.bdd;
 
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class SeleniumDriver<T extends RemoteWebDriver> implements Driver {
+public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImpl {
 
 	private T ActualWebDriver;
 
@@ -22,9 +23,13 @@ public class SeleniumDriver<T extends RemoteWebDriver> implements Driver {
 	}
 
 	@Override
-	public void addEventListener(DriverEventListener driverActionListener) {
-		// TODO Auto-generated method stub
-
+	public void close() {
+		try {
+			ActualWebDriver.close();
+		} catch (NoSuchSessionException snf) {
+			// do nothing since the browser associated with the driver is
+			// already closed
+		}
 	}
 
 }

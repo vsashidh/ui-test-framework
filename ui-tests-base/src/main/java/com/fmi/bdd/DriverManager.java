@@ -15,9 +15,10 @@ public class DriverManager {
 	};
 
 	private Driver driver;
+	DriverNotifier driverNotifier;
 
 	private DriverManager() {
-		System.out.println("DriverManager has been instantiated");
+		System.out.println("DriverManager has been instantiated " + this);
 	}
 
 	public Driver getProvider(DriverProperties prp) {
@@ -43,11 +44,14 @@ public class DriverManager {
 
 			}
 		}
+		System.out.println("Driver has been instantiated " + driver);
 		return driver;
 	}
 
 	public void destroyDriver() {
 		System.out.println("<<<<< DESTROYING DRIVERMANAGER >>>>>>");
+		driver = null;
+		driverNotifier = null;
 	}
 
 }
