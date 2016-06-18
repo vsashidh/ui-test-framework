@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 
 import com.fmi.bdd.CloseBrowserEvent;
 import com.fmi.bdd.DriverEvent;
+import com.fmi.bdd.OpenBrowserEvent;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -16,8 +17,8 @@ public class ExampleHooks implements ApplicationEventPublisherAware {
 	@Before
 	public void beforeCallingScenario() {
 		System.out.println("*********** About to start the scenario.");
-		/*DriverEvent openEvent = new OpenBrowserEvent(this);
-		publisher.publishEvent(openEvent);*/
+		DriverEvent openEvent = new OpenBrowserEvent(this);
+		publisher.publishEvent(openEvent);
 	}
 
 	@After

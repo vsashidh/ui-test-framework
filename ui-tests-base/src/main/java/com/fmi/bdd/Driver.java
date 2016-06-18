@@ -10,4 +10,6 @@ public interface Driver {
 	public <T> T getDriver();
 
 	public void close();
+
+	public void open();
 }

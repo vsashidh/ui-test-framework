@@ -20,7 +20,6 @@ public class GlobalHooks implements ApplicationEventPublisherAware {
 
 	@Before
 	public void beforeAll() {
-		((AbstractApplicationContext) ctx).registerShutdownHook();
 		if (!dunit) {
 			// Create the afterAll thread
 			Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -28,8 +27,6 @@ public class GlobalHooks implements ApplicationEventPublisherAware {
 				@Override
 				public void run() {
 					System.out.println("<<<<< Executing after all >>>>>");
-					DriverEvent closeEvent = new CloseBrowserEvent(this);
-					publisher.publishEvent(closeEvent);
 				}
 
 			});

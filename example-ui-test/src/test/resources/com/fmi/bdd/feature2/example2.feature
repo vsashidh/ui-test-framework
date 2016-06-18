@@ -16,9 +16,9 @@
 ## (Comments)
 
 #Sample Feature Definition Template
-@example
+@example2
 
-Feature: Example feature
+Feature: Example2 feature
 	I want to use this example to show how behavior-driven development tests work.
 
 @smoke

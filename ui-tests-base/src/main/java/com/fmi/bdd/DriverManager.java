@@ -1,8 +1,5 @@
 package com.fmi.bdd;
 
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -22,29 +19,20 @@ public class DriverManager {
 	}
 
 	public Driver getProvider(DriverProperties prp) {
-		if (driver == null) {
-			if (prp.getDriverType() == DriverType.WEBDRIVER) {
-				switch (prp.getBrowserType()) {
-				case CHROME:
-					System.getProperties().setProperty("webdriver.chrome.driver", prp.getChromeDriverPath());
-					driver = new SeleniumDriver<ChromeDriver>(new ChromeDriver());
-					break;
-				case SAFARI:
-					driver = new SeleniumDriver<SafariDriver>(new SafariDriver());
-					break;
-				default:
-					driver = null;
-					break;
-				}
-
-				if (driver != null) {
-					((WebDriver) driver.getDriver()).manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-					((WebDriver) driver.getDriver()).get(prp.getURL());
-				}
-
+		if (prp.getDriverType() == DriverType.WEBDRIVER) {
+			switch (prp.getBrowserType()) {
+			case CHROME:
+				System.getProperties().setProperty("webdriver.chrome.driver", prp.getChromeDriverPath());
+				driver = new SeleniumDriver<ChromeDriver>(new ChromeDriver(), prp.getURL());
+				break;
+			case SAFARI:
+				driver = new SeleniumDriver<SafariDriver>(new SafariDriver(), prp.getURL());
+				break;
+			default:
+				driver = null;
+				break;
 			}
 		}
-		System.out.println("Driver has been instantiated " + driver);
 		return driver;
 	}
 
