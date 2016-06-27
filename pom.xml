@@ -6,6 +6,29 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<scm>
+		<connection>scm:git:ssh://git@appdev030:QualityEngineering/fmi-ui-test-framework.git</connection>
+		<developerConnection>scm:git:ssh://git@appdev030:QualityEngineering/fmi-ui-test-framework.git</developerConnection>
+		<url>http://appdev030/QualityEngineering/fmi-ui-test-framework.git</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>fmi-ui-tests</id>
+			<name>Corporate repository</name>
+			<url>scp://researchmaster.corp.local/compbio/software/apache-maven/repo/repository</url>
+			<layout>default</layout>
+			<uniqueVersion>false</uniqueVersion>
+		</repository>
+		<snapshotRepository>
+			<id>fmi-ui-tests-snapshot</id>
+			<name>Corporate snapshot repository</name>
+			<url>scp://researchmaster.corp.local/compbio/software/apache-maven/repo/snapshot-repository</url>
+			<layout>default</layout>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<properties>
 		<java.version>1.7</java.version>
 		<maven.compiler.version>3.5.1</maven.compiler.version>
@@ -237,6 +260,15 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- Overriding the default behavior for maven release plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
