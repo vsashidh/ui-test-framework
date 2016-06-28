@@ -1,10 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
+
+	<scm>
+		<connection>scm:git:ssh://git@appdev030:QualityEngineering/fmi-ui-test-framework.git</connection>
+		<developerConnection>scm:git:ssh://git@appdev030:QualityEngineering/fmi-ui-test-framework.git</developerConnection>
+		<url>http://appdev030/QualityEngineering/fmi-ui-test-framework.git</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>fmi-ui-tests</id>
+			<name>Corporate repository</name>
+			<url>file:///Volumes/Public/FmiMavenRepo/repository</url>
+			<layout>default</layout>
+			<uniqueVersion>false</uniqueVersion>
+		</repository>
+		<snapshotRepository>
+			<id>fmi-ui-tests-snapshot</id>
+			<name>Corporate snapshot repository</name>
+			<url>file:///Volumes/Public/FmiMavenRepo/snapshot-repository</url>
+			<layout>default</layout>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<java.version>1.7</java.version>
@@ -17,7 +39,6 @@
 	</properties>
 
 	<modules>
-		<module>medical-reporting-ui-tests</module>
 		<module>example-ui-test</module>
 		<module>ui-tests-base</module>
 	</modules>
@@ -130,6 +151,11 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>info.cukes</groupId>
 				<artifactId>cucumber-spring</artifactId>
 				<version>1.2.3</version>
@@ -146,12 +172,8 @@
 			</dependency>
 
 			<!-- logging dependency -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>1.7.21</version>
-			</dependency>
-			
+
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -177,15 +199,26 @@
 				<version>2.19.1</version>
 				<executions>
 					<execution>
+						<id>functional-tests</id>
+						<phase>test</phase>
 						<goals>
 							<goal>integration-test</goal>
-							<goal>verify</goal>
 						</goals>
 						<configuration>
 							<skipITs>${skipITs}</skipITs>
 							<dependenciesToScan>
 								<dependency>com.foundationmedicine:ui-tests-base</dependency>
 							</dependenciesToScan>
+						</configuration>
+					</execution>
+					<execution>
+						<id>functional-tests-verification</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<testFailureIgnore>true</testFailureIgnore>
 						</configuration>
 					</execution>
 				</executions>
@@ -217,14 +250,33 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>cucumber-jvm-example</projectName>
+							<projectName>${project.name}</projectName>
 							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
 							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
 							<parallelTesting>false</parallelTesting>
 							<buildNumber>1</buildNumber> <!-- TODO: need to determine the purpose of this value -->
+							<checkBuildResult>false</checkBuildResult>
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<!-- Overriding the default behavior for maven release plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>1.0-m5.1</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

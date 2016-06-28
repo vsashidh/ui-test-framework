@@ -1,25 +1,31 @@
 package com.fmi.pageobject;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class ExampleChildPageObj {
-	
+import com.fmi.bdd.Driver;
+
+public class ExampleChildPageObj extends BasePageObj {
+
 	@FindBy(css = "h3")
 	private WebElement pageHeader;
-	
-	private WebDriver driver;
-	
-	public ExampleChildPageObj(){
-		driver = new ChromeDriver();
-		PageFactory.initElements(driver, this);
+
+	public ExampleChildPageObj(Driver drv) {
+		super(drv);
 	}
-	
-	public String getHeader(){
+
+	public String getHeader() {
 		return pageHeader.getText();
+	}
+
+	@Override
+	public void setInView() {
+		try {
+			inView = (pageHeader.isDisplayed());
+		} catch (NoSuchElementException nse) {
+			inView = false;
+		}
 	}
 
 }
