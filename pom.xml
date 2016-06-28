@@ -15,14 +15,14 @@
 		<repository>
 			<id>fmi-ui-tests</id>
 			<name>Corporate repository</name>
-			<url>scp://researchmaster.corp.local/compbio/software/apache-maven/repo/repository</url>
+			<url>file://INF-FS01/DFS Folders$/Public/FmiMavenRepo/repository</url>
 			<layout>default</layout>
 			<uniqueVersion>false</uniqueVersion>
 		</repository>
 		<snapshotRepository>
 			<id>fmi-ui-tests-snapshot</id>
 			<name>Corporate snapshot repository</name>
-			<url>scp://researchmaster.corp.local/compbio/software/apache-maven/repo/snapshot-repository</url>
+			<url>file://INF-FS01/DFS Folders$/Public/FmiMavenRepo/snapshot-repository</url>
 			<layout>default</layout>
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
