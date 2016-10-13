@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -277,6 +277,7 @@
 				<configuration>
 					<pushReleases>true</pushReleases>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<noReleaseBuild>true</noReleaseBuild>
 				</configuration>
 			</plugin>
 		</plugins>
