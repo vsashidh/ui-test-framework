@@ -21,7 +21,7 @@
 Feature: Example2 feature
 	I want to use this example to show how behavior-driven development tests work.
 
-@smoke
+@donotsmoke
 Scenario: Clicking the first element in the list
 Given the page has a link with text 'A/B Testing'
 When I click on the link with text 'A/B Testing'

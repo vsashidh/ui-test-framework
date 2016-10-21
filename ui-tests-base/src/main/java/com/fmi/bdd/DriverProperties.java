@@ -21,8 +21,12 @@ public final class DriverProperties {
 	private String chromeDriverPath;
 	@Value("${webdriver.ie.driver}")
 	private String ieDriverPath;
-	
-	//url
+	@Value("${webdriver.remote.url}")
+	private String hubUrl;
+	@Value("${webdriver.timeout}")
+	private String timeout;
+
+	// url
 	@Value("${test.url}")
 	private String testUrl;
 
@@ -54,4 +58,12 @@ public final class DriverProperties {
 	public String getURL() {
 		return testUrl;
 	};
+
+	public String getHubURL() {
+		return hubUrl;
+	};
+
+	public long getTimeOutInSec() {
+		return Long.valueOf(timeout);
+	}
 }

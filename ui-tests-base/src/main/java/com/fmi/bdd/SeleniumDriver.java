@@ -7,14 +7,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImpl {
 
-	private T actualWebDriver;
-	private Class<?> actualWebDriverClass;
-	private String url;
+	protected T actualWebDriver;
+	protected Class<?> actualWebDriverClass;
+	protected DriverProperties props;
 
-	public SeleniumDriver(T actualDriver, String url) {
+	public SeleniumDriver(T actualDriver, DriverProperties properties) {
 		actualWebDriver = actualDriver;
 		actualWebDriverClass = actualDriver.getClass();
-		this.url = url;
+		this.props = properties;
 	}
 
 	@Override
@@ -51,8 +51,8 @@ public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImp
 				e.printStackTrace();
 			}
 		}
-		actualWebDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		actualWebDriver.get(url);
+		actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
+		actualWebDriver.get(props.getURL());
 	}
 
 }
