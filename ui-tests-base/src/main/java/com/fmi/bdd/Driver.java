@@ -2,7 +2,7 @@ package com.fmi.bdd;
 
 public interface Driver {
 	public enum DriverType {
-		WEBDRIVER
+		WEBDRIVER, REMOTE_WEBDRIVER
 	}
 
 	public DriverType getDriverType();
