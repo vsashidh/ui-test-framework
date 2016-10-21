@@ -203,12 +203,14 @@
 				<executions>
 					<execution>
 						<id>functional-tests</id>
-						<phase>test</phase>
+						<phase>integration-test</phase>
 						<goals>
 							<goal>integration-test</goal>
 						</goals>
 						<configuration>
 							<skipITs>${skipITs}</skipITs>
+							<forkcount>2</forkcount>
+							<reusefork>false</reusefork>
 							<dependenciesToScan>
 								<dependency>com.foundationmedicine:ui-tests-base</dependency>
 							</dependenciesToScan>
@@ -262,7 +264,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>	
 			<!-- Overriding the default behavior for maven release plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -24,8 +24,8 @@ public class ExampleHooks implements ApplicationEventPublisherAware {
 	@After
 	public void afterRunningScenario(Scenario scenario) {
 		System.out.println("*********** Just finished running scenario: " + scenario.getStatus());
-		DriverEvent closeEvent = new CloseBrowserEvent(this);
-		publisher.publishEvent(closeEvent);
+		/*DriverEvent closeEvent = new CloseBrowserEvent(this);
+		publisher.publishEvent(closeEvent);*/
 	}
 
 	@Override
