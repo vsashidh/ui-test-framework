@@ -58,7 +58,7 @@ public class DriverManager {
 
 	public void destroyDriver() {
 		System.out.println("<<<<< DESTROYING DRIVERMANAGER >>>>>>");
-		driver.close();
+		driver.close(true);
 		driver = null;
 		driverNotifier = null;
 	}

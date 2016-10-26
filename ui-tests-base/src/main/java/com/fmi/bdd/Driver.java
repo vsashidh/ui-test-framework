@@ -9,7 +9,7 @@ public interface Driver {
 
 	public <T> T getDriver();
 
-	public void close();
+	public void close(boolean shuttingDown);
 
 	public void open();
 }
