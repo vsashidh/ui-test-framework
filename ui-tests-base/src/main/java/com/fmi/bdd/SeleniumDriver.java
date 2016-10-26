@@ -29,7 +29,7 @@ public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImp
 	}
 
 	@Override
-	public void close() {
+	public void close(boolean shuttingDown) {
 		try {
 			actualWebDriver.quit();
 			actualWebDriver = null;

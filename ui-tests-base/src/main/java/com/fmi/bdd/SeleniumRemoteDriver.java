@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumRemoteDriver extends SeleniumDriver<RemoteWebDriver> {
@@ -23,6 +22,13 @@ public class SeleniumRemoteDriver extends SeleniumDriver<RemoteWebDriver> {
 	@Override
 	public DriverType getDriverType() {
 		return DriverType.REMOTE_WEBDRIVER;
+	}
+
+	@Override
+	public void close(boolean shuttingDown) {
+		if(shuttingDown) {
+			super.close(true);
+		}
 	}
 
 	@Override

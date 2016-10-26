@@ -12,7 +12,7 @@ public class CloseBrowserEvent extends DriverEvent {
 	@Override
 	public void perform(ApplicationContext appContext, Driver driver) {
 		System.out.println("<<<<<CLOSING DRIVER>>>>>>>");
-		driver.close();
+		driver.close(false);
 	}
 
 }
