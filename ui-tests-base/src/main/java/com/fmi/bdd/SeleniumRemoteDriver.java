@@ -26,7 +26,7 @@ public class SeleniumRemoteDriver extends SeleniumDriver<RemoteWebDriver> {
 
 	@Override
 	public void close(boolean shuttingDown) {
-		if(shuttingDown) {
+		if (shuttingDown) {
 			super.close(true);
 		}
 	}
@@ -43,9 +43,8 @@ public class SeleniumRemoteDriver extends SeleniumDriver<RemoteWebDriver> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
 		}
+		actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
 		actualWebDriver.get(props.getURL());
 	}
 
