@@ -33,13 +33,7 @@ public abstract class BasePageObj {
 		return inView;
 	}
 
-	/**
-	 * Waits for some time before until the condition is met
-	 * 
-	 * @param function
-	 * @param pollTime
-	 * @return
-	 */
+	
 	public void waitForCondition(ExpectedCondition<Boolean> expectedCondition, int pollTime, int timeOut) {
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).pollingEvery(pollTime, TimeUnit.MILLISECONDS)
 				.withTimeout(timeOut, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
