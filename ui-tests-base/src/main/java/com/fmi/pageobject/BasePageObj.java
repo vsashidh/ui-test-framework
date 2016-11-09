@@ -33,11 +33,20 @@ public abstract class BasePageObj {
 		return inView;
 	}
 
-	
 	public void waitForCondition(ExpectedCondition<Boolean> expectedCondition, int pollTime, int timeOut) {
+		/*Waits for some time before until the condition is met*/
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).pollingEvery(pollTime, TimeUnit.MILLISECONDS)
 				.withTimeout(timeOut, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
 
 		wait.until(expectedCondition);
 	}
+	
+	public WebElement getElemAfterMeetingCondition(ExpectedCondition<WebElement> condition, int pollTime, int timeOut) {
+		/*Returns an element after the condition is met*/
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).pollingEvery(pollTime, TimeUnit.MILLISECONDS)
+ 				.withTimeout(timeOut, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
+ 
+ 		return wait.until(condition);
+ 
+ 	}
 }
