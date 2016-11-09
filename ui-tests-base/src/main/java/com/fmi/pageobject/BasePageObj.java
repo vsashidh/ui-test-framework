@@ -46,20 +46,4 @@ public abstract class BasePageObj {
 
 		wait.until(expectedCondition);
 	}
-
-	/**
-	 * Returns an element after the condition is met
-	 * 
-	 * @param condition
-	 * @param pollTime
-	 * @param timeOut
-	 * @return
-	 */
-	public WebElement getElemAfterMeetingCondition(ExpectedCondition<WebElement> condition, int pollTime, int timeOut) {
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).pollingEvery(pollTime, TimeUnit.MILLISECONDS)
-				.withTimeout(timeOut, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
-
-		return wait.until(condition);
-
-	}
 }
