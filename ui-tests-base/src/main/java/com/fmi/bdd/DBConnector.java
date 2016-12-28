@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.javalite.activejdbc.Base;
 import org.javalite.activejdbc.DB;
 import org.javalite.activejdbc.Model;
 import org.springframework.core.io.ClassPathResource;
@@ -19,7 +18,7 @@ import org.springframework.core.io.Resource;
  * 
  * == Example of a spring dbconnector bean ==
  * 
- * <bean id="dbConnectorMr2" class="com.fmi.bdd.DBConnector" destroy-method="close" scope="cucumber-glue"> 
+ * {@literal<bean id="dbConnectorMr2" class="com.fmi.bdd.DBConnector" destroy-method="close" scope="cucumber-glue"> 
  * 		<constructor-arg index="0" value="default"/>
  * 		<constructor-arg index="1" value="oracle.jdbc.OracleDriver"/>
  * 		<constructor-arg index="2" value="jdbc:oracle:thin:@localhost:1521:xe"/>
@@ -30,11 +29,11 @@ import org.springframework.core.io.Resource;
  * 				<value type="java.lang.Class">com.fmi.support.db.Snapshots</value> 
  * 			</list>
  * 		</constructor-arg> 
- * </bean>
+ * </bean>}
  * 
  * @author vsashidharan
  *
- * @param <T>
+ * @param <T> - org.javalite.activejdbc.Model
  */
 public class DBConnector<T extends Model> {
 
