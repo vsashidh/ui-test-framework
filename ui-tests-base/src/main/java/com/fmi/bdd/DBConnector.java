@@ -14,28 +14,27 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 /**
- * Used by test projects to connect to a database(or schema) and corresponding tables 
+ * Used by test projects to connect to a database(or schema) and corresponding
+ * tables
  * 
  * == Example of a spring dbconnector bean ==
  * 
- *  	<bean id="dbConnectorMr2" class="com.fmi.bdd.DBConnector" destroy-method="close"
- *		scope="cucumber-glue">
- *		<constructor-arg index="0" value="default"/>
- *		<constructor-arg index="1" value="oracle.jdbc.OracleDriver"/>
- *		<constructor-arg index="2" value="jdbc:oracle:thin:@localhost:1521:xe"/>
- *		<constructor-arg index="3" value="MR2"/>
- *		<constructor-arg index="4" value="fmi"/>
- *		<constructor-arg index="5">
- *			<list>
- *				<value type="java.lang.Class">com.fmi.support.db.DomainEvent</value>
- *				<value type="java.lang.Class">com.fmi.support.db.Snapshots</value>
- *			</list>
- *		</constructor-arg>
- *	</bean>
- *  
+ * <bean id="dbConnectorMr2" class="com.fmi.bdd.DBConnector" destroy-method="close" scope="cucumber-glue"> 
+ * 		<constructor-arg index="0" value="default"/>
+ * 		<constructor-arg index="1" value="oracle.jdbc.OracleDriver"/>
+ * 		<constructor-arg index="2" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+ * 		<constructor-arg index="3" value="MR2"/> <constructor-arg index="4" value="fmi"/> 
+ * 		<constructor-arg index="5"> 
+ * 			<list> 
+ * 				<value type="java.lang.Class">com.fmi.support.db.DomainEvent</value>
+ * 				<value type="java.lang.Class">com.fmi.support.db.Snapshots</value> 
+ * 			</list>
+ * 		</constructor-arg> 
+ * </bean>
+ * 
  * @author vsashidharan
  *
- * @param <T> 
+ * @param <T>
  */
 public class DBConnector<T extends Model> {
 
