@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.foundationmedicine</groupId>
 		<artifactId>fmi-ui-tests</artifactId>
-		<version>0.0.14</version>
+		<version>0.0.15</version>
 	</parent>
 	<artifactId>ui-tests-base</artifactId>
 
@@ -48,6 +48,17 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
+		</dependency>
+
+		<!-- active JDBC orm -->
+		<dependency>
+			<groupId>org.javalite</groupId>
+			<artifactId>activejdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc7</artifactId>
 		</dependency>
 	</dependencies>
 
