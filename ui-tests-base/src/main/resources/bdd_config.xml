@@ -16,7 +16,7 @@
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 		<property name="locations">
 			<list>
-				<value>classpath:application.properties</value>
+				<value>classpath:application-${env}.properties</value>
 			</list>
 		</property>
 	</bean>
