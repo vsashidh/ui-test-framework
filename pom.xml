@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.16</version>
+	<version>0.0.17</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -52,10 +52,25 @@
 		<profile>
 			<id>profile-vm</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>env</name>
+					<value>vm</value>
+				</property>
 			</activation>
 			<properties>
 				<cucumber.output.dir>${project.build.directory}/cucumber-output-vm</cucumber.output.dir>
+			</properties>
+		</profile>
+		<profile>
+			<id>profile-aws</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>aws</value>
+				</property>
+			</activation>
+			<properties>
+				<cucumber.output.dir>${project.build.directory}/cucumber-output-aws</cucumber.output.dir>
 			</properties>
 		</profile>
     </profiles>
