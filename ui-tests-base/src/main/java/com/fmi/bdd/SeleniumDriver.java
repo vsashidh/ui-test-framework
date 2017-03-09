@@ -2,7 +2,10 @@ package com.fmi.bdd;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchSessionException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImpl {
@@ -53,6 +56,14 @@ public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImp
 		}
 		actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
 		actualWebDriver.get(props.getURL());
+		try {
+			actualWebDriver.findElement(By.id("user-signin")).sendKeys(props.getOktaUser());
+			actualWebDriver.findElement(By.id("pass-signin")).sendKeys(props.getOktaPass());
+			actualWebDriver.findElement(By.id("signin-button")).click();
+			return;
+		} catch (NoSuchElementException | StaleElementReferenceException nse) {
+			return;
+		}
 	}
 
 }

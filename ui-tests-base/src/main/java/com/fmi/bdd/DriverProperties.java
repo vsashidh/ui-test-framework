@@ -29,6 +29,12 @@ public final class DriverProperties {
 	// url
 	@Value("${test.url}")
 	private String testUrl;
+	
+	@Value("${okta.user}")
+	private String oktaUser;
+	
+	@Value("${okta.password}")
+	private String oktaPass;
 
 	public void setBrowserType(BrowserType brType) {
 		this.brType = brType;
@@ -65,5 +71,13 @@ public final class DriverProperties {
 
 	public long getTimeOutInSec() {
 		return Long.valueOf(timeout);
+	}
+
+	public String getOktaUser() {
+		return oktaUser;
+	}
+	
+	public String getOktaPass() {
+		return oktaPass;
 	}
 }
