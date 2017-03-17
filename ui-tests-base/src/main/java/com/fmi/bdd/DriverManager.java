@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -15,18 +16,28 @@ public class DriverManager {
 
 	private Driver driver;
 	DriverNotifier driverNotifier;
+	
+	public static DesiredCapabilities chromeCapabilities;
+	
+	static{
+		chromeCapabilities = DesiredCapabilities.chrome();
+		ChromeOptions chromeOpts = new ChromeOptions();
+		chromeOpts.addArguments("start-fullscreen");
+		chromeCapabilities.setCapability(chromeOpts.CAPABILITY, chromeOpts);
+	}
 
 	private DriverManager() {
 		System.out.println("DriverManager has been instantiated " + this);
 	}
 
 	public Driver getProvider(DriverProperties prp) throws MalformedURLException {
+		
 		switch (prp.getDriverType()) {
 		case WEBDRIVER:
 			switch (prp.getBrowserType()) {
 			case CHROME:
 				System.getProperties().setProperty("webdriver.chrome.driver", prp.getChromeDriverPath());
-				driver = new SeleniumDriver<ChromeDriver>(new ChromeDriver(), prp);
+				driver = new SeleniumDriver<ChromeDriver>(new ChromeDriver(chromeCapabilities), prp);
 				break;
 			case SAFARI:
 				driver = new SeleniumDriver<SafariDriver>(new SafariDriver(), prp);
@@ -39,7 +50,7 @@ public class DriverManager {
 		case REMOTE_WEBDRIVER:
 			switch (prp.getBrowserType()) {
 			case CHROME:
-				driver = new SeleniumRemoteDriver(new URL(prp.getHubURL()), DesiredCapabilities.chrome(), prp);
+				driver = new SeleniumRemoteDriver(new URL(prp.getHubURL()), chromeCapabilities, prp);
 				break;
 			case FIREFOX:
 				driver = new SeleniumRemoteDriver(new URL(prp.getHubURL()), DesiredCapabilities.firefox(), prp);
@@ -62,5 +73,6 @@ public class DriverManager {
 		driver = null;
 		driverNotifier = null;
 	}
+	
 
 }
