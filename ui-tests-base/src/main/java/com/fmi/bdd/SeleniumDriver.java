@@ -1,8 +1,12 @@
 package com.fmi.bdd;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -48,18 +52,20 @@ public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImp
 		if (actualWebDriver == null) {
 
 			try {
-				actualWebDriver = (T) actualWebDriverClass.newInstance();
-			} catch (InstantiationException | IllegalAccessException e) {
+				Constructor<?> classConstructor = actualWebDriverClass.getConstructor(Capabilities.class);
+				actualWebDriver = (T) classConstructor.newInstance(DriverManager.chromeCapabilities);
+			} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
+		//actualWebDriver.manage().window().maximize();
 		actualWebDriver.get(props.getURL());
 		try {
-			actualWebDriver.findElement(By.id("user-signin")).sendKeys(props.getOktaUser());
-			actualWebDriver.findElement(By.id("pass-signin")).sendKeys(props.getOktaPass());
-			actualWebDriver.findElement(By.id("signin-button")).click();
+			actualWebDriver.findElement(By.cssSelector("#user-signin,input[name=username]")).sendKeys(props.getOktaUser());
+			actualWebDriver.findElement(By.cssSelector("#pass-signin,input[name=password]")).sendKeys(props.getOktaPass());
+			actualWebDriver.findElement(By.cssSelector("#signin-button,input[type=submit]")).click();
 			return;
 		} catch (NoSuchElementException | StaleElementReferenceException nse) {
 			return;
