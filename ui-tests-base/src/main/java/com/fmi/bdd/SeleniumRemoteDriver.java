@@ -46,6 +46,7 @@ public class SeleniumRemoteDriver extends SeleniumDriver<RemoteWebDriver> {
 		}
 		actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
 		actualWebDriver.get(props.getURL());
+		login();
 	}
 
 }

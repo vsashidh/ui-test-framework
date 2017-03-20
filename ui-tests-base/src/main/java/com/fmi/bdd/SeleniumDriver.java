@@ -10,7 +10,10 @@ import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 
 public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImpl {
 
@@ -54,21 +57,30 @@ public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImp
 			try {
 				Constructor<?> classConstructor = actualWebDriverClass.getConstructor(Capabilities.class);
 				actualWebDriver = (T) classConstructor.newInstance(DriverManager.chromeCapabilities);
-			} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
+			} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | SecurityException
+					| IllegalArgumentException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		actualWebDriver.manage().timeouts().implicitlyWait(props.getTimeOutInSec(), TimeUnit.SECONDS);
-		//actualWebDriver.manage().window().maximize();
 		actualWebDriver.get(props.getURL());
+		login();
+	}
+
+	protected void login() {
 		try {
-			actualWebDriver.findElement(By.cssSelector("#user-signin,input[name=username]")).sendKeys(props.getOktaUser());
-			actualWebDriver.findElement(By.cssSelector("#pass-signin,input[name=password]")).sendKeys(props.getOktaPass());
-			actualWebDriver.findElement(By.cssSelector("#signin-button,input[type=submit]")).click();
-			return;
-		} catch (NoSuchElementException | StaleElementReferenceException nse) {
-			return;
+			String userSelector = "#user-signin,input[name=username]";
+			String passSelector = "#pass-signin,input[name=password]";
+			String submitSelector = "#signin-button,input[type=submit]";
+			actualWebDriver.findElement(By.cssSelector(userSelector)).sendKeys(props.getOktaUser());
+			actualWebDriver.findElement(By.cssSelector(passSelector)).sendKeys(props.getOktaPass());
+			actualWebDriver.findElement(By.cssSelector(submitSelector)).click();
+			new FluentWait<WebDriver>(actualWebDriver).pollingEvery(250, TimeUnit.MILLISECONDS)
+					.withTimeout(2000, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class)
+					.until(ExpectedConditions.stalenessOf(actualWebDriver.findElement(By.cssSelector(userSelector))));
+		} catch (NoSuchElementException nse) {
+			// swallowing exception for cases when login is not present.
 		}
 	}
 
