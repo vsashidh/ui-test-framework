@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.foundationmedicine</groupId>
 		<artifactId>fmi-ui-tests</artifactId>
-		<version>0.0.21</version>
+		<version>0.0.22-SNAPSHOT</version>
 	</parent>
 	<artifactId>example-ui-test</artifactId>
 	<dependencies>
@@ -67,7 +67,7 @@
 		<dependency>
 			<groupId>com.foundationmedicine</groupId>
 			<artifactId>ui-tests-base</artifactId>
-			<version>0.0.21</version>
+			<version>0.0.22-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
