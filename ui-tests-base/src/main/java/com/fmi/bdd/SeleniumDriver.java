@@ -74,12 +74,13 @@ public class SeleniumDriver<T extends RemoteWebDriver> extends AbstractDriverImp
 			String passSelector = "#pass-signin,input[name=password]";
 			String submitSelector = "#signin-button,input[type=submit]";
 			actualWebDriver.findElement(By.cssSelector(userSelector)).sendKeys(props.getOktaUser());
+			Thread.sleep(500);
 			actualWebDriver.findElement(By.cssSelector(passSelector)).sendKeys(props.getOktaPass());
 			actualWebDriver.findElement(By.cssSelector(submitSelector)).click();
 			new FluentWait<WebDriver>(actualWebDriver).pollingEvery(250, TimeUnit.MILLISECONDS)
 					.withTimeout(2000, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class)
 					.until(ExpectedConditions.stalenessOf(actualWebDriver.findElement(By.cssSelector(userSelector))));
-		} catch (NoSuchElementException nse) {
+		} catch (NoSuchElementException | InterruptedException nse) {
 			// swallowing exception for cases when login is not present.
 		}
 	}
