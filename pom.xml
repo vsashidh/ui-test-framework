@@ -15,18 +15,18 @@
 		<repository>
 			<id>fmi-ui-tests</id>
 			<name>Corporate repository</name>
-			<url>http://artifactory.foundationmedicine.com/artifactory/libs-release</url>
+			<url>http://artifactory.foundationmedicine.com/artifactory/libs-release-local</url>
 			<!-- <url>file:///Volumes/qe-mavenrepo$/repository</url> -->
-			<layout>default</layout>
-			<uniqueVersion>false</uniqueVersion>
+			<!-- layout>default</layout> -->
+			<!-- <uniqueVersion>false</uniqueVersion> -->
 		</repository>
 		<snapshotRepository>
 			<id>fmi-ui-tests-snapshot</id>
 			<name>Corporate snapshot repository</name>
-			<url>http://artifactory.foundationmedicine.com/artifactory/libs-snapshot</url>
+			<url>http://artifactory.foundationmedicine.com/artifactory/libs-snapshot-local</url>
 			<!-- <url>file:///Volumes/qe-mavenrepo$/snapshot-repository</url> -->
-			<layout>default</layout>
-			<uniqueVersion>false</uniqueVersion>
+			<!-- <layout>default</layout> -->
+			<!-- <uniqueVersion>false</uniqueVersion> -->
 		</snapshotRepository>
 	</distributionManagement>
 
