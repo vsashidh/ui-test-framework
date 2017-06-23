@@ -41,7 +41,7 @@
 		<junit.version>4.12</junit.version>
 		<skipITs>false</skipITs>
 		<skipUTs>true</skipUTs>
-		<maven.cucumber.reporting.version>3.1.0</maven.cucumber.reporting.version>
+		<maven.cucumber.reporting.version>3.8.0</maven.cucumber.reporting.version>
 		<cucumber.output.dir>${project.build.directory}</cucumber.output.dir>
 	</properties>
 
