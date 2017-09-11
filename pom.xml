@@ -11,6 +11,15 @@
 		<url>https://github.foundationmedicine.com/QualityEngineering/fmi-ui-test-framework</url>
 	</scm>
 
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>foundationmedicine-releases</name>
+			<url>https://foundationmedicine.jfrog.io/foundationmedicine/libs-release</url>
+		</repository>
+	</distributionManagement>
+
+
 	<properties>
 		<java.version>1.8</java.version>
 		<maven.compiler.version>3.5.1</maven.compiler.version>
