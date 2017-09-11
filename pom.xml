@@ -307,6 +307,7 @@
 				<configuration>
 					<pushReleases>true</pushReleases>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<enableSshAgent>true</enableSshAgent>
 				</configuration>
 			</plugin>
 		
