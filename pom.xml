@@ -2,33 +2,23 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.23</version>
+	<version>0.0.24</version>
 	<packaging>pom</packaging>
 
 	<scm>
-		<connection>scm:git:ssh://git@appdev030:QualityEngineering/fmi-ui-test-framework.git</connection>
-		<developerConnection>scm:git:ssh://git@appdev030:QualityEngineering/fmi-ui-test-framework.git</developerConnection>
-		<url>http://appdev030/QualityEngineering/fmi-ui-test-framework.git</url>
+		<connection>scm:git:ssh://git@github.foundationmedicine.com:QualityEngineering/fmi-ui-test-framework.git</connection>
+		<developerConnection>scm:git:ssh://git@github.foundationmedicine.com:QualityEngineering/fmi-ui-test-framework.git</developerConnection>
+		<url>https://github.foundationmedicine.com/QualityEngineering/fmi-ui-test-framework</url>
 	</scm>
 
 	<distributionManagement>
 		<repository>
-			<id>fmi-ui-tests</id>
-			<name>Corporate repository</name>
-			<url>http://artifactory.foundationmedicine.com/artifactory/libs-release-local</url>
-			<!-- <url>file:///Volumes/qe-mavenrepo$/repository</url> -->
-			<layout>default</layout>
-			<uniqueVersion>false</uniqueVersion>
+			<id>central</id>
+			<name>foundationmedicine-releases</name>
+			<url>https://foundationmedicine.jfrog.io/foundationmedicine/libs-release</url>
 		</repository>
-		<snapshotRepository>
-			<id>fmi-ui-tests-snapshot</id>
-			<name>Corporate snapshot repository</name>
-			<url>http://artifactory.foundationmedicine.com/artifactory/libs-snapshot-local</url>
-			<!-- <url>file:///Volumes/qe-mavenrepo$/snapshot-repository</url> -->
-			<layout>default</layout>
-			<uniqueVersion>false</uniqueVersion>
-		</snapshotRepository>
 	</distributionManagement>
+
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -326,6 +316,7 @@
 				<configuration>
 					<pushReleases>true</pushReleases>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<enableSshAgent>true</enableSshAgent>
 				</configuration>
 			</plugin>
 		
