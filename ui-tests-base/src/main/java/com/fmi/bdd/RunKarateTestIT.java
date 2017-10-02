@@ -2,6 +2,7 @@ package com.fmi.bdd;
 
 import com.intuit.karate.junit4.Karate;
 import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -21,6 +22,8 @@ public class RunKarateTestIT {
     }
 
     private static boolean isAPITest() {
+        if(System.getProperty("apiTest")!=null)
+            return true;
         return false;
     }
 }
