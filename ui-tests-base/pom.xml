@@ -74,7 +74,17 @@
 			<version>2.6</version>
 		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-jersey</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-junit4</artifactId>
+		</dependency>
+
+
+    </dependencies>
 
 	<build>
 		<!-- turn off acceptance/ui testing plugin for this project -->

@@ -1,24 +1,26 @@
 package com.fmi.bdd;
 
+import com.intuit.karate.junit4.Karate;
+import cucumber.api.CucumberOptions;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-
-@RunWith(Cucumber.class)
+/**
+ * Created by vsashidharan on 10/1/17.
+ */
+@RunWith(Karate.class)
 @CucumberOptions(
         plugin = { "pretty", "html:target/cucumber", "json:target/cucumber.json" }
-        )
-public class RunCukesTestIT {
+)
+public class RunKarateTestIT {
     @BeforeClass
     public static void before(){
-        Assume.assumeTrue(isUITest());
+        Assume.assumeTrue(isAPITest());
     }
 
-    private static boolean isUITest() {
+    private static boolean isAPITest() {
         return false;
     }
 }
