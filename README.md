@@ -20,6 +20,10 @@ OR
 
 ``` mvn clean install -Dcucumber.options="--tags @smoke" -Denv=local```
 
+### Run API tests locally
+
+```mvn clean install -Dcucumber.options="--tags @api" -DapiTest```
+
 
 ### Releasing at the end of a sprint
 From ``` develop ``` branch run : 

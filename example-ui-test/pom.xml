@@ -69,6 +69,16 @@
 			<artifactId>ui-tests-base</artifactId>
 			<version>0.0.25-SNAPSHOT</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-jersey</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-junit4</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
