@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.foundationmedicine</groupId>
 		<artifactId>fmi-ui-tests</artifactId>
-		<version>0.0.24</version>
+		<version>0.0.25</version>
 	</parent>
 	<artifactId>ui-tests-base</artifactId>
 
@@ -74,7 +74,17 @@
 			<version>2.6</version>
 		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-jersey</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-junit4</artifactId>
+		</dependency>
+
+
+    </dependencies>
 
 	<build>
 		<!-- turn off acceptance/ui testing plugin for this project -->

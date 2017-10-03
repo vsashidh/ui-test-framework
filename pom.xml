@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.24</version>
+	<version>0.0.25</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -33,6 +33,7 @@
 		<skipUTs>true</skipUTs>
 		<maven.cucumber.reporting.version>3.1.0</maven.cucumber.reporting.version>
 		<cucumber.output.dir>${project.build.directory}</cucumber.output.dir>
+		<karate.version>0.6.0</karate.version>
 	</properties>
 
 	<modules>
@@ -210,6 +211,18 @@
 	
 			<!-- logging dependency -->
 
+			<!-- karate dependency -->
+			<dependency>
+				<groupId>com.intuit.karate</groupId>
+				<artifactId>karate-jersey</artifactId>
+				<version>${karate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.intuit.karate</groupId>
+				<artifactId>karate-junit4</artifactId>
+				<version>${karate.version}</version>
+			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>
@@ -243,8 +256,6 @@
 						</goals>
 						<configuration>
 							<skipITs>${skipITs}</skipITs>
-							<forkcount>2</forkcount>
-							<reusefork>false</reusefork>
 							<dependenciesToScan>
 								<dependency>com.foundationmedicine:ui-tests-base</dependency>
 							</dependenciesToScan>
@@ -277,6 +288,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- <reporting> -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
@@ -336,7 +349,7 @@
 		
 		</plugins>
 	</build>
-	<!-- <reporting> ... </reporting> -->
+
 
 	<organization>
 		<name>Foundation Medicine</name>

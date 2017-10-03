@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.foundationmedicine</groupId>
 		<artifactId>fmi-ui-tests</artifactId>
-		<version>0.0.24</version>
+		<version>0.0.25</version>
 	</parent>
 	<artifactId>example-ui-test</artifactId>
 	<dependencies>
@@ -67,7 +67,17 @@
 		<dependency>
 			<groupId>com.foundationmedicine</groupId>
 			<artifactId>ui-tests-base</artifactId>
-			<version>0.0.24</version>
+			<version>0.0.25</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-jersey</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-junit4</artifactId>
 		</dependency>
 	</dependencies>
 
