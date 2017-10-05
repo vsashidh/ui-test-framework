@@ -71,8 +71,7 @@
             <id>profile-api</id>
             <activation>
                 <property>
-                    <name>env</name>
-                    <value>apiTest</value>
+                    <name>apiTest</name>
                 </property>
             </activation>
             <properties>
