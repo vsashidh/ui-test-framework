@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.26</version>
+	<version>0.0.27</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -71,8 +71,7 @@
             <id>profile-api</id>
             <activation>
                 <property>
-                    <name>env</name>
-                    <value>apiTest</value>
+                    <name>apiTest</name>
                 </property>
             </activation>
             <properties>
