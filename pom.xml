@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.foundationmedicine</groupId>
 	<artifactId>fmi-ui-tests</artifactId>
-	<version>0.0.25</version>
+	<version>0.0.26</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -34,6 +34,7 @@
 		<maven.cucumber.reporting.version>3.1.0</maven.cucumber.reporting.version>
 		<cucumber.output.dir>${project.build.directory}</cucumber.output.dir>
 		<karate.version>0.6.0</karate.version>
+        <include.file.pattern>**/RunCukesTestIT.java</include.file.pattern>
 	</properties>
 
 	<modules>
@@ -66,6 +67,18 @@
 				<cucumber.output.dir>${project.build.directory}/cucumber-output-aws</cucumber.output.dir>
 			</properties>
 		</profile>
+        <profile>
+            <id>profile-api</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>apiTest</value>
+                </property>
+            </activation>
+            <properties>
+                <include.file.pattern>**/RunKarateTestIT.java</include.file.pattern>
+            </properties>
+        </profile>
     </profiles>
 
 	<dependencyManagement>
@@ -259,6 +272,9 @@
 							<dependenciesToScan>
 								<dependency>com.foundationmedicine:ui-tests-base</dependency>
 							</dependenciesToScan>
+                            <includes>
+                                <include>${include.file.pattern}</include>
+                            </includes>
 						</configuration>
 					</execution>
 					<execution>
@@ -352,6 +368,6 @@
 
 
 	<organization>
-		<name>Foundation Medicine</name>
+		<name>Foundation Medicine Inc.</name>
 	</organization>
 </project>
