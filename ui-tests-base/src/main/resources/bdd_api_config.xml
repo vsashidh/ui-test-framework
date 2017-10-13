@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<!-- Enables dependency injection annotations (@Autowired, @Value, etc.) 
+		in Java files -->
+	<context:annotation-config />
+
+	<!-- annotations now pickup property values from a properties file -->
+	<bean
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations" value="classpath:application-${env}.properties" />
+	</bean>
+
+	<!-- a DriverProperties bean which will contain values from application.properties
+		file -->
+	<bean id="dproperties" class="com.fmi.bdd.DriverProperties">
+		<property name="BrowserType" value="${test.browser}" />
+		<property name="DriverType" value="${test.driver}" />
+	</bean>
+
+</beans>
