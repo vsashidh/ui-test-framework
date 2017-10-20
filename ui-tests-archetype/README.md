@@ -10,7 +10,7 @@ Once you have cloned the project
  4. Create a merge request to be merged into develop branch
 
 ### Creating your first test project
-``` mvn archetype:generate -Dfilter=com.foundationmedicine ```
+``` mvn archetype:generate -Dfilter=com.foundationmedicine:fmi-ui-test-archetype ```
 
 ### Run tests locally
 ``` mvn clean install -Denv=local```

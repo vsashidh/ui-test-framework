@@ -1,0 +1,54 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		">
+
+	<import resource="bdd_api_config.xml" />
+
+	<!-- DB refresh script beans -->
+
+	<!-- EXAMPLE of instantiating multiple database connections -->
+	<!-- bean id="dbConnectorMr2" class="${package}.bdd.DBConnector" destroy-method="close">
+		<constructor-arg index="0" value="default"/>
+		<constructor-arg index="1" value="oracle.jdbc.OracleDriver"/>
+		<constructor-arg index="2" value="${symbol_dollar}{jdbc.url}"/>
+		<constructor-arg index="3" value="${symbol_dollar}{jdbc.default.user}"/>
+		<constructor-arg index="4" value="${symbol_dollar}{jdbc.default.password}"/>
+		<constructor-arg index="5">
+			<list>
+				<value type="java.lang.Class">${package}.support.db.DomainEvent</value>
+				<value type="java.lang.Class">${package}.support.db.Snapshots</value>
+				<value type="java.lang.Class">${package}.support.db.TextModuleView</value>
+				<value type="java.lang.Class">${package}.support.db.TextModuleStaging</value>
+				<value type="java.lang.Class">${package}.support.db.TherapyAssessment</value>
+				<value type="java.lang.Class">${package}.support.db.DomainEvent</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="dbConnectorMr3" class="${package}.bdd.DBConnector" destroy-method="close">
+		<constructor-arg index="0" value="rocket"/>
+		<constructor-arg index="1" value="oracle.jdbc.OracleDriver"/>
+		<constructor-arg index="2" value="${symbol_dollar}{jdbc.url}"/>
+		<constructor-arg index="3" value="${symbol_dollar}{jdbc.sct.user}"/>
+		<constructor-arg index="4" value="${symbol_dollar}{jdbc.sct.password}"/>
+		<constructor-arg index="5">
+			<list>
+				<value type="java.lang.Class">${package}.support.db.Therapies</value>
+			</list>
+		</constructor-arg>
+	</bean -->
+
+
+</beans>
