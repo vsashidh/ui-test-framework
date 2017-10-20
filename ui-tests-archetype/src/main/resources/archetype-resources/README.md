@@ -1,4 +1,4 @@
-QA Framework
+MR2 QA Framework
 ===================
 
 Use ``` develop ``` branch for active development.  ``` master ``` branch is to version control healthy set of tests.
@@ -15,15 +15,12 @@ Once you have cloned the project
 ### Run tests locally
 ``` mvn clean install -Denv=local```
 
-
 OR
 
-``` mvn clean install -Dcucumber.options="--tags @smoke" -Denv=local```
+``` mvn clean install -Dcucumber.options="--tags @mr2mgmt_1228" -Denv=local```
 
-### Run API tests locally
-
-```mvn clean install -Dcucumber.options="--tags @api" -DapiTest -Denv=aws```
-
+### Run tests overriding and in remote debug mode
+``` mvn clean install -Dcucumber.options="--tags @mr2mgmt_1370 --tags @positive" -Denv=local -Dtest.url=https://mr2.qa.foundationmedicine.com/graphEditor/ -Dmaven.failsafe.debug ```
 
 ### Releasing at the end of a sprint
 From ``` develop ``` branch run : 
@@ -32,4 +29,5 @@ From ``` develop ``` branch run :
 2. ``` mvn jgitflow:release-finish -Dmaven.test.skip=true ```
 
 
-
+### Run karate api test
+mvn clean install -Dcucumber.options="--tags @api" -DapiTest -Denv=aws

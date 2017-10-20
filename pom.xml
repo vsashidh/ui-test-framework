@@ -40,6 +40,7 @@
 	<modules>
 		<module>example-ui-test</module>
 		<module>ui-tests-base</module>
+		<module>ui-tests-archetype</module>
 	</modules>
 	
 	<profiles>

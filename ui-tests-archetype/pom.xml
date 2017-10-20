@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.foundationmedicine</groupId>
+  <artifactId>fmi-ui-test-archetype</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>fmi-ui-test-archetype</name>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.0.1</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.foundationmedicine.com:QualityEngineering/fmi-ui-test-framework.git/fmi-ui-test</connection>
+    <developerConnection>scm:git:ssh://git@github.foundationmedicine.com:QualityEngineering/fmi-ui-test-framework.git/fmi-ui-test</developerConnection>
+    <url>https://github.foundationmedicine.com/QualityEngineering/fmi-ui-test-framework/fmi-ui-test</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>central</id>
+      <name>foundationmedicine-releases</name>
+      <url>https://foundationmedicine.jfrog.io/foundationmedicine/libs-release</url>
+    </repository>
+  </distributionManagement>
+</project>
