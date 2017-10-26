@@ -4,7 +4,7 @@
 
   <groupId>com.foundationmedicine</groupId>
   <artifactId>fmi-ui-test-archetype</artifactId>
-  <version>0.0.30-SNAPSHOT</version>
+  <version>0.0.30</version>
   <packaging>maven-archetype</packaging>
 
   <name>fmi-ui-test-archetype</name>
