@@ -43,7 +43,8 @@ public class DBConnector<T extends Model> {
 	public DBConnector(String logicalName, String driver, String url, String user, String pwd,
 			List<Class<T>> entityClasses) {
 		System.setProperty("active_env", "test"); // for activejdbc
-		conn = new DB(logicalName);
+        System.setProperty("activejdbc.log", "");
+        conn = new DB(logicalName);
 		conn.open(driver, url, user, pwd);
 		try {
 			this.entities = new ArrayList<T>();
@@ -72,8 +73,8 @@ public class DBConnector<T extends Model> {
 					if (line.endsWith(";")) {
 						line = line.replaceAll(";$", "");
 						sql.append(line);
-						String mama = sql.toString();
-						count = conn.exec(mama);
+						String sql_str = sql.toString();
+						count = conn.exec(sql_str);
 						sql = new StringBuilder();
 					} else {
 						sql.append(line);
@@ -91,12 +92,14 @@ public class DBConnector<T extends Model> {
 
 	public void clean() {
 		try {
+		    conn.openTransaction();
 			for (T entity : entities) {
 				entity.getClass().getMethod("deleteAll").invoke(null, new Object[] {});
 			}
+			conn.commitTransaction();
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
 				| SecurityException e) {
-			// TODO Auto-generated catch block
+            conn.rollbackTransaction();
 			e.printStackTrace();
 		}
 	}
