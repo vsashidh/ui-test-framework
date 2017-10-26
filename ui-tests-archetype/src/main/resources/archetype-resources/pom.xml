@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.foundationmedicine</groupId>
 		<artifactId>fmi-ui-tests</artifactId>
-		<version>0.0.28</version>
+		<version>0.0.30</version>
 	</parent>
 	<version>${version}</version>
 	<groupId>${groupId}</groupId>
@@ -81,7 +81,7 @@
 		<dependency>
 			<groupId>com.foundationmedicine</groupId>
 			<artifactId>ui-tests-base</artifactId>
-			<version>0.0.28</version>
+			<version>0.0.30</version>
 		</dependency>
 
 
