@@ -38,7 +38,7 @@ Once you have cloned the project
  3. Make changes , commit and push the local feature branch to remote( or origin)
  4. Create a merge request to be merged into develop branch
 
-### Releasing at the end of a sprint
+### Releasing
 From ``` develop ``` branch run : 
 
 1. ``` mvn jgitflow:release-start ```
